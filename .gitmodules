@@ -1,0 +1,3 @@
+[submodule "easy-configs-config"]
+	path = easy-configs-config
+	url = git@github.com:skalinets/easy-configs-config.git
