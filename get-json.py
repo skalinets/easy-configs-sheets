@@ -1,5 +1,6 @@
 from __future__ import print_function
 import os.path
+import json
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
@@ -9,8 +10,8 @@ from google.oauth2.credentials import Credentials
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
 
 # The ID and range of a sample spreadsheet.
-SAMPLE_SPREADSHEET_ID = '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms'
-SAMPLE_RANGE_NAME = 'Class Data!A2:E'
+SAMPLE_SPREADSHEET_ID = '1nx2huNH68pfKMwUY_oOxkfPIWb9X-SLL93kaLDS4jQM'
+SAMPLE_RANGE_NAME = 'Sheet1!A1:B'
 
 def main():
     """Shows basic usage of the Sheets API.
@@ -45,10 +46,9 @@ def main():
     if not values:
         print('No data found.')
     else:
-        print('Name, Major:')
-        for row in values:
-            # Print columns A and E, which correspond to indices 0 and 4.
-            print('%s, %s' % (row[0], row[4]))
+        d = { 'name' : values[0][1] }
+        with open("sample.json", "w") as outfile:
+            json.dump(d, outfile, indent=4)
 
 if __name__ == '__main__':
     main()
